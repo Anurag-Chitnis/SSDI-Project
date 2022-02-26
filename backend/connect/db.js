@@ -11,4 +11,8 @@ export const dbConnect = asyncHandler(async () => {
   const { connections } = await mongoose.connect(
     process.env.MONGO_URL + process.env.MONGO_DB_NAME
   );
+
+  if (connections) {
+    console.log("Database connected at localhost".underline.yellow);
+  }
 });
