@@ -15,6 +15,11 @@ const app = express();
 import { dbConnect } from "./connect/db.js";
 dbConnect();
 
+// Import Router
+import ProductRoute from "./routes/products.js";
+
+app.use("/api/products", ProductRoute);
+
 // Global Variables
 const PORT = process.env.PORT || 5000;
 
