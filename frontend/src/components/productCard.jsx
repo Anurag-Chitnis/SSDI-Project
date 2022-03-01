@@ -1,7 +1,11 @@
+// Default imports
 import React, { Fragment } from "react";
 
+// Import Components
+import Rating from "./rating";
+
 const ProductCard = ({ product }) => {
-  const { name, price, image } = product;
+  const { name, price, image, rating } = product;
   return (
     <Fragment>
       <div
@@ -18,7 +22,7 @@ const ProductCard = ({ product }) => {
           >
             {name}
           </a>
-          {/* <Rating rating={rating} /> */}
+          <Rating rating={rating} />
           <p className="flex uppercase text-xl font-bold text-blue-500">
             ${price}
           </p>
