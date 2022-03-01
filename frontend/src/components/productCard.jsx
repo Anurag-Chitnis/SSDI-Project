@@ -17,7 +17,7 @@ const ProductCard = ({ product }) => {
         </div>
         <div className="p-6 min-h-2/4 space-y-3">
           <a
-            // to={`/products/${_id}`}
+            href="/products/"
             className="text-gray-700 hover:underline font-medium text-lg"
           >
             {name}
