@@ -18,10 +18,12 @@ dbConnect();
 // Import Default Data
 import users from "./data/users.js";
 import products from "./data/products.js";
+import clothes from "./data/clothes.js";
 
 // Import Mongoose Models
 import User from "./model/user.js";
 import Product from "./model/product.js";
+import Cloth from "./model/cloth.js";
 
 const importData = asyncHandler(async (req, res) => {
   // Clear data
@@ -35,7 +37,18 @@ const importData = asyncHandler(async (req, res) => {
     return { ...product, user: adminUserId };
   });
 
-  await Product.insertMany(dbProducts);
+  const createdProducts = await Product.insertMany(dbProducts);
+
+  const clothProducts = createdProducts.filter(
+    (prod) => prod.category == "clothing"
+  );
+
+  for (let i = 0; i < clothProducts.length; i++) {
+    clothes[i].product_id = clothProducts[i]._id;
+  }
+
+  await Cloth.insertMany(clothes);
+
   console.log("Data Imported".underline.yellow.bold);
   process.exit(1);
 });
@@ -43,6 +56,7 @@ const importData = asyncHandler(async (req, res) => {
 const deleteData = asyncHandler(async (req, res) => {
   await User.deleteMany({});
   await Product.deleteMany({});
+  await Cloth.deleteMany({});
   console.log("Data Deleted".underline.bold.yellow);
   process.exit(1);
 });
