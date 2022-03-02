@@ -1,5 +1,6 @@
 const INITIAL_STATE = {
   products: [],
+  product: null,
   isLoading: false,
   error: false,
 };
@@ -7,6 +8,7 @@ const INITIAL_STATE = {
 export const ProductReducer = (state = INITIAL_STATE, { type, payload }) => {
   switch (type) {
     case "GET_PRODUCTS_START":
+    case "GET_PRODUCT_BY_ID_REQUEST":
       return {
         ...state,
         isLoading: true,
@@ -22,6 +24,19 @@ export const ProductReducer = (state = INITIAL_STATE, { type, payload }) => {
         ...state,
         isLoading: false,
         error: payload,
+      };
+    case "GET_PRODUCT_BY_ID_SUCCESS":
+      return {
+        ...state,
+        product: payload,
+        isLoading: false,
+      };
+    case "GET_PRODUCT_BY_ID_FAIL":
+      return {
+        ...state,
+        isLoading: false,
+        error: payload,
+        product: null,
       };
     default:
       return state;

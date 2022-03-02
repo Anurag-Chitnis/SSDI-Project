@@ -14,7 +14,7 @@ const Navbar = () => {
       </div>
       {/* Navigation list */}
       <ul>
-        <NavLink link="/dashboard" src="/svg/home.svg" alt="dashboard image" />
+        <NavLink link="/" src="/svg/home.svg" alt="dashboard image" />
         <NavLink
           link={`/dashboard/user/profile/`}
           src="/svg/user.svg"
