@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 // Import Components
 import Product from "../components/product";
+import Spinner from "../components/spinner";
 
 // Import Redux Actions
 import { getProductById } from "../redux/product/productAction";
@@ -29,7 +30,7 @@ const ProductScreen = () => {
           <Product product={product}></Product>
         </>
       ) : (
-        <h1>Loading</h1>
+        <Spinner />
       )}
     </Fragment>
   );

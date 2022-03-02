@@ -3,7 +3,6 @@ import React from "react";
 import Rating from "./rating";
 
 const Product = ({ product }) => {
-  console.log(product);
   return (
     <div className="mx-auto flex flex-wrap">
       <img

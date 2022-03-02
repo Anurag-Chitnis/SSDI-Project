@@ -2,6 +2,7 @@ import React, { Fragment, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // Import Component
 import DisplayProduct from "../components/displayProduct";
+import Spinner from "../components/spinner";
 
 // Import Utils
 import { filterByProp } from "../utils/filterByProp";
@@ -37,7 +38,7 @@ const HomeScreen = () => {
             ))}
           </>
         ) : (
-          <h1>loading</h1>
+          <Spinner />
         )}
       </div>
     </Fragment>
