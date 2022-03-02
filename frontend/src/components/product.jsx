@@ -2,6 +2,9 @@ import React from "react";
 
 import Rating from "./rating";
 
+import ListGroup from "./listGroup";
+import ListGroupItem from "./listGroupItem";
+
 const Product = ({ product }) => {
   return (
     <div className="mx-auto flex flex-wrap pb-7">
@@ -36,6 +39,58 @@ const Product = ({ product }) => {
             </div>
           )}
         </div>
+        {product.category === "clothing" && (
+          <ListGroup marginTop="mt-5">
+            <ListGroupItem
+              label="sub category"
+              value={product.sub_category}
+              fontSize="base"
+              display="flex justify-between"
+            />
+            <ListGroupItem
+              label="material"
+              value={product.material}
+              fontSize="base"
+              display="flex justify-between"
+            />
+            <ListGroupItem
+              label="sleeve length"
+              value={product.sleeve_length}
+              fontSize="base"
+              display="flex justify-between"
+            />
+            <ListGroupItem
+              label="gender"
+              value={product.gender}
+              fontSize="base"
+              display="flex justify-between"
+            />
+            <ListGroupItem
+              label="collar"
+              value={product.collar}
+              fontSize="base"
+              display="flex justify-between"
+            />
+            <ListGroupItem
+              label="pattern"
+              value={product.pattern}
+              fontSize="base"
+              display="flex justify-between"
+            />
+            <ListGroupItem
+              label="fit"
+              value={product.fit}
+              fontSize="base"
+              display="flex justify-between"
+            />
+            <ListGroupItem
+              label="occassion"
+              value={product.occasion}
+              fontSize="base"
+              display="flex justify-between"
+            />
+          </ListGroup>
+        )}
         <hr className="mt-4 mb-5" />
         <div className="flex justify-center mt-3">
           <span className="title-font font-bold text-3xl text-blue-400 mt-1">

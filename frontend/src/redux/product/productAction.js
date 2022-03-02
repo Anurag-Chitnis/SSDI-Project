@@ -30,11 +30,20 @@ export const getProductById = (id) => async (dispatch) => {
   });
   try {
     const { data } = await axios.get(`/api/products/${id}`);
-    // On Success of Fetching data
-    dispatch({
-      type: "GET_PRODUCT_BY_ID_SUCCESS",
-      payload: data,
-    });
+
+    if (data.category === "clothing") {
+      const { data: clothData } = await axios.get(`/api/clothes/${id}`);
+      dispatch({
+        type: "GET_PRODUCT_BY_ID_SUCCESS",
+        payload: { ...clothData.product, ...clothData.clothProduct },
+      });
+    } else {
+      // On Success of Fetching data
+      dispatch({
+        type: "GET_PRODUCT_BY_ID_SUCCESS",
+        payload: data,
+      });
+    }
   } catch (err) {
     // On dispatch error
     dispatch({
