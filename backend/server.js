@@ -17,8 +17,9 @@ dbConnect();
 
 // Import Router
 import ProductRoute from "./routes/products.js";
-
+import ClothRoute from "./routes/clothes.js";
 app.use("/api/products", ProductRoute);
+app.use("/api/clothes", ClothRoute);
 
 // Global Variables
 const PORT = process.env.PORT || 5000;
