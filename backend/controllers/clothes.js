@@ -3,7 +3,6 @@ import asyncHandler from "express-async-handler";
 
 import Product from "../model/product.js";
 import Cloth from "../model/cloth.js";
-import cloth from "../model/cloth.js";
 
 export const getClothProducts = asyncHandler(async (req, res) => {
   const products = await Product.find();
@@ -42,4 +41,14 @@ export const getClothProducts = asyncHandler(async (req, res) => {
         res.json(clothesSET);
       }
     });
+});
+
+export const getClothProductById = asyncHandler(async (req, res) => {
+  const product = await Product.findById(req.params.id);
+  const clothProduct = await Cloth.findOne({ product_id: product._id });
+
+  res.json({
+    product,
+    clothProduct,
+  });
 });

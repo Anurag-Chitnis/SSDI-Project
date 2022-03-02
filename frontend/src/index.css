@@ -59,3 +59,7 @@ i {
     transform: rotate(360deg);
   }
 }
+
+.productImg {
+  max-height: 60rem !important;
+}

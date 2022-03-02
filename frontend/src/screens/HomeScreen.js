@@ -27,7 +27,7 @@ const HomeScreen = () => {
   return (
     <Fragment>
       <div className="wrapper">
-        {!isLoading && !error ? (
+        {!isLoading && productsByCategory && !error ? (
           <>
             {productsByCategory.map((productObject, index) => (
               <DisplayProduct

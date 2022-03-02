@@ -3,8 +3,12 @@ import express from "express";
 const router = express.Router();
 
 // Import Controller
-import { getClothProducts } from "../controllers/clothes.js";
+import {
+  getClothProducts,
+  getClothProductById,
+} from "../controllers/clothes.js";
 
 router.route("/").get(getClothProducts);
+router.route("/:id").get(getClothProductById);
 
 export default router;
