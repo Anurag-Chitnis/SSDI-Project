@@ -8,11 +8,13 @@ import Spinner from "../components/spinner";
 
 // Import Redux Actions
 import { getProductById } from "../redux/product/productAction";
+import { useNavigate } from "react-router-dom";
 
 const ProductScreen = () => {
   // Init Dispatch
   const dispatch = useDispatch();
   const { productId } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getProductById(productId));
@@ -22,7 +24,10 @@ const ProductScreen = () => {
   const { isLoading, error, product } = productReducer;
   return (
     <Fragment>
-      <button className="ml-auto text-white text-lg bg-gray-600 py-2 px-6 rounded mb-10">
+      <button
+        className="ml-auto text-white text-lg bg-gray-600 py-2 px-6 rounded mb-10"
+        onClick={() => navigate("/")}
+      >
         Back Page
       </button>
       {!isLoading && product && !error ? (

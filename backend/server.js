@@ -10,6 +10,8 @@ dotenv.config({ path: __dist + "/backend/.env" });
 
 // initialized express
 const app = express();
+// Express middleware to make post req
+app.use(express.json());
 
 // Connect database
 import { dbConnect } from "./connect/db.js";
@@ -18,8 +20,11 @@ dbConnect();
 // Import Router
 import ProductRoute from "./routes/products.js";
 import ClothRoute from "./routes/clothes.js";
+import UserRoute from "./routes/user.js";
+
 app.use("/api/products", ProductRoute);
 app.use("/api/clothes", ClothRoute);
+app.use("/api/user", UserRoute);
 
 // Global Variables
 const PORT = process.env.PORT || 5000;
