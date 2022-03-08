@@ -22,3 +22,23 @@ export const createUser = asyncHandler(async (req, res) => {
 
   return res.json(user);
 });
+
+export const loginUser = asyncHandler(async (req, res) => {
+  const { email, password } = req.body;
+
+  const user = await User.findOne({ email });
+
+  if (!user) return res.json({ error: "User does not exists" });
+
+  if (user && (await user.comparePassword(password))) {
+    const token = await user.generateToken({ _id: user._id, email, password });
+
+    user.token = token;
+
+    user.save();
+
+    res.json(user);
+  } else {
+    return res.json({ error: "Invalid email or password" });
+  }
+});
