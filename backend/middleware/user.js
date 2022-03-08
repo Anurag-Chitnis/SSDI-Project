@@ -3,8 +3,7 @@ import jwt from "jsonwebtoken";
 import User from "../model/user.js";
 
 export const verify = async (req, res, next) => {
-  const token = req.headers["Authorization"];
-
+  const token = req.headers["authorization"];
   if (token) {
     const decodedUser = await jwt.verify(token, process.env.SECRET);
 
@@ -14,9 +13,11 @@ export const verify = async (req, res, next) => {
 
     req.user = user;
 
+    console.log(req.user);
+
     next();
   } else {
     res.status(400);
-    throw new Error("Invalid token");
+    res.json({ error: "Invalid or missing token" });
   }
 };
