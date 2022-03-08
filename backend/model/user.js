@@ -41,13 +41,11 @@ const userSchema = new Schema({
   },
 });
 
-userSchema.pre("save", function (req, res, next) {
+userSchema.pre("save", async function (req, res, next) {
   if (!this.isModified("password")) return next();
-  bcrypt.genSalt(process.env.ROUNDS, function (err, salt) {
-    bcrypt.hash(this.password, salt, function (err, hash) {
-      this.password = hash;
-    });
-  });
+  const salt = await bcrypt.genSalt(Number(process.env.ROUNDS));
+  this.password = await bcrypt.hash(this.password, salt);
+  next();
 });
 
 export default mongoose.model("users", userSchema);
