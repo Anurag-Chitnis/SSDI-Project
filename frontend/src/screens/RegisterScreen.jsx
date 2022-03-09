@@ -1,10 +1,39 @@
-import React, { Fragment } from "react";
-import { Link } from "react-router-dom";
+import React, { Fragment, useState } from "react";
+import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 
 // Import Components
 import FormInput from "../components/formInput";
 
+// Import Redux Action
+import { createUser } from "../redux/user/userAction";
+
 const RegisterScreen = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const [userData, setUserData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    confirmpassword: "",
+  });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const { firstName, lastName, email, password, confirmpassword } = userData;
+
+    if (password !== confirmpassword) {
+      alert("Passwords do not match");
+    } else {
+      dispatch(createUser({ firstName, lastName, email, password }, navigate));
+    }
+  };
+
+  const handleChange = (e) =>
+    setUserData({ ...userData, [e.target.name]: e.target.value });
+
   return (
     <Fragment>
       <div className="flex items-center min-h-screen bg-white">
@@ -12,14 +41,14 @@ const RegisterScreen = () => {
           <div className="max-w-md mx-auto my-10">
             <div className="text-center">
               <h1 className="my-3 text-3xl font-semibold text-gray-700">
-                SIGN IN
+                SIGN UP
               </h1>
               <p className="text-gray-500 text-xl">
-                Sign in to access your account
+                Sign up to access your account
               </p>
             </div>
             <div className="m-7">
-              <form>
+              <form onSubmit={handleSubmit}>
                 <FormInput
                   label={{ labelFor: "firstName", message: "Enter First Name" }}
                   inputAttributes={{
@@ -28,6 +57,7 @@ const RegisterScreen = () => {
                     name: "firstName",
                     id: "firstName",
                   }}
+                  onChange={handleChange}
                 />
                 <FormInput
                   label={{ labelFor: "lastName", message: "Enter Last Name" }}
@@ -37,6 +67,7 @@ const RegisterScreen = () => {
                     name: "lastName",
                     id: "lastName",
                   }}
+                  onChange={handleChange}
                 />
                 <FormInput
                   label={{ labelFor: "email", message: "Enter Email" }}
@@ -46,6 +77,7 @@ const RegisterScreen = () => {
                     name: "email",
                     id: "email",
                   }}
+                  onChange={handleChange}
                 />
                 <FormInput
                   label={{ labelFor: "password", message: "Enter Password" }}
@@ -55,6 +87,7 @@ const RegisterScreen = () => {
                     name: "password",
                     id: "password",
                   }}
+                  onChange={handleChange}
                 />
                 <FormInput
                   label={{
@@ -67,6 +100,7 @@ const RegisterScreen = () => {
                     name: "confirmpassword",
                     id: "confirmpassword",
                   }}
+                  onChange={handleChange}
                 />
                 <div className="mb-6">
                   <button
