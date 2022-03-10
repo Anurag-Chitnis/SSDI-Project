@@ -24,11 +24,11 @@ function App() {
 
   useEffect(() => {
     !token && navigate("/login");
-  }, [userData, token, navigate]);
+  }, [userData, token]);
 
   return (
     <Fragment>
-      {token ? (
+      {token && (
         <div className="h-screen w-screen flex bg-gray-40">
           <Navbar />
           <main className="container mx-auto py-5">
@@ -43,12 +43,11 @@ function App() {
             </Routes>
           </main>
         </div>
-      ) : (
-        <Routes>
-          <Route path="/login" element={<LoginScreen />} />
-          <Route path="/register" element={<RegisterScreen />} />
-        </Routes>
       )}
+      <Routes>
+        <Route path="/login" element={<LoginScreen />} />
+        <Route path="/register" element={<RegisterScreen />} />
+      </Routes>
     </Fragment>
   );
 }
