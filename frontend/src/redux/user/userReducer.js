@@ -2,6 +2,7 @@ const INITIAL_STATE = {
   user: null,
   isLoading: false,
   error: null,
+  userData: null,
 };
 
 export const UserReducer = (state = INITIAL_STATE, { type, payload }) => {
@@ -12,12 +13,18 @@ export const UserReducer = (state = INITIAL_STATE, { type, payload }) => {
         ...state,
         isLoading: true,
       };
-    case "USER_LOGIN_SUCCESS":
     case "USER_REGISTER_SUCCESS":
       return {
         ...state,
         isLoading: false,
         user: payload,
+      };
+    case "USER_LOGIN_SUCCESS":
+      return {
+        ...state,
+        isLoading: false,
+        error: null,
+        userData: payload,
       };
     case "USER_LOGIN_FAIL":
     case "USER_REGISTER_FAIL":

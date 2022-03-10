@@ -1,11 +1,32 @@
 // Default Imports
-import React, { Fragment } from "react";
-import { Link } from "react-router-dom";
+import React, { Fragment, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 // Import Components
 import FormInput from "../components/formInput";
 
+// Import Redux actions
+import { loginUser } from "../redux/user/userAction";
+
 const LoginScreen = () => {
+  const [userInfo, setUserInfo] = useState({
+    email: "",
+    password: "",
+  });
+
+  const { email, password } = userInfo;
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleChange = (e) =>
+    setUserInfo({ ...userInfo, [e.target.name]: e.target.value });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(loginUser({ email, password }, navigate));
+  };
+
   return (
     <Fragment>
       <div className="flex items-center min-h-screen bg-white">
@@ -20,7 +41,7 @@ const LoginScreen = () => {
               </p>
             </div>
             <div className="m-7">
-              <form>
+              <form onSubmit={handleSubmit}>
                 <FormInput
                   label={{ labelFor: "email", message: "Email Address" }}
                   inputAttributes={{
@@ -29,6 +50,7 @@ const LoginScreen = () => {
                     name: "email",
                     id: "email",
                   }}
+                  onChange={handleChange}
                 />
                 <FormInput
                   label={{ labelFor: "password", message: "Enter Password" }}
@@ -38,6 +60,7 @@ const LoginScreen = () => {
                     name: "password",
                     id: "password",
                   }}
+                  onChange={handleChange}
                 />
                 <div className="mb-6">
                   <button

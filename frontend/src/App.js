@@ -1,5 +1,7 @@
 // Import Components
-import { Fragment } from "react";
+import { Fragment, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import Navbar from "./components/navbar";
 // Import Screens
 import HomeScreen from "./screens/HomeScreen";
@@ -10,10 +12,19 @@ import RegisterScreen from "./screens/RegisterScreen";
 import { Routes, Route } from "react-router-dom";
 
 function App() {
-  const flag = false;
+  const { userData } = useSelector((state) => state.user);
+
+  const token = userData && userData.token ? userData.token : null;
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    !token && navigate("/login");
+  }, [userData, token, navigate]);
+
   return (
     <Fragment>
-      {flag ? (
+      {token ? (
         <div className="h-screen w-screen flex bg-gray-40">
           <Navbar />
           <main className="container mx-auto py-5">
