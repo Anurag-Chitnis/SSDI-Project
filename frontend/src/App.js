@@ -39,6 +39,10 @@ function App() {
                   path="/products/:productId"
                   element={<ProductScreen />}
                 />
+                <Route
+                  path="/products/category/:categoryId"
+                  element={<ProductScreen />}
+                />
               </Route>
             </Routes>
           </main>
