@@ -8,8 +8,12 @@ import HomeScreen from "./screens/HomeScreen";
 import ProductScreen from "./screens/ProductScreen";
 import LoginScreen from "./screens/LoginScreen";
 import RegisterScreen from "./screens/RegisterScreen";
+
 // Import Router
 import { Routes, Route } from "react-router-dom";
+
+// Protected Routes
+import ProtectedRoute from "./routes/protectedRoute";
 
 function App() {
   const { userData } = useSelector((state) => state.user);
@@ -29,8 +33,13 @@ function App() {
           <Navbar />
           <main className="container mx-auto py-5">
             <Routes>
-              <Route path="/" element={<HomeScreen />} />
-              <Route path="/products/:productId" element={<ProductScreen />} />
+              <Route element={<ProtectedRoute />}>
+                <Route path="/" element={<HomeScreen />} />
+                <Route
+                  path="/products/:productId"
+                  element={<ProductScreen />}
+                />
+              </Route>
             </Routes>
           </main>
         </div>

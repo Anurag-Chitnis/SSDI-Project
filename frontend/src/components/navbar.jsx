@@ -1,7 +1,10 @@
 import React from "react";
 import NavLink from "./navlink";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
+  const { userData } = useSelector((state) => state.user);
+
   return (
     <aside className="sidebar flex flex-col items-center bg-white text-gray-700 shadow h-full sticky">
       {/*  Brand Image */}
@@ -9,7 +12,7 @@ const Navbar = () => {
         <img
           className="h-7 rounded w-7 mx-auto"
           alt="svelte logo"
-          src="/svg/user.svg"
+          src={"https://" + userData.avatar}
         />
       </div>
       {/* Navigation list */}
