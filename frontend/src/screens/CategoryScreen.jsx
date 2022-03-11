@@ -3,24 +3,46 @@ import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 // Import Component
-import { DisplayProduct } from "../components/displayProduct";
-import { Spinner } from "../components/spinner";
+import DisplayProduct from "../components/displayProduct";
 // Import Utils
-import { sliceArrByProp } from "../utils/";
+import { filterBySubCategory } from "../utils/filterByProp";
+
 const CategoryScreen = () => {
   const { categoryId } = useParams();
   const { isLoading, products, error } = useSelector((state) => state.product);
-  console.log(categoryId, products);
-  const productsByCategory = sliceArrByProp(products, categoryId);
-  console.log(productsByCategory);
+
+  // Filter products by category
+  const filteredProducts = products.filter(
+    (prod) => prod.category == categoryId
+  );
+  // Then filter them by sub category: if sub category exists
+  const subCategories = filterBySubCategory(filteredProducts);
   return (
-    <Fragment>
-      {!isLoading && !error ? (
-        <DisplayProduct products={productsByCategory} category={categoryId} />
+    <div className="wrapper">
+      {subCategories.length > 1 ? (
+        <>
+          {subCategories.map((subCategory, index) => (
+            <div className="product__wrapper">
+              <DisplayProduct
+                key={index}
+                products={filteredProducts}
+                category={categoryId}
+                subCategory={subCategory}
+                count="5"
+              />
+            </div>
+          ))}
+        </>
       ) : (
-        <Spinner />
+        <div className="p-2">
+          <DisplayProduct
+            products={filteredProducts}
+            count={filteredProducts.length}
+            category={categoryId}
+          />
+        </div>
       )}
-    </Fragment>
+    </div>
   );
 };
 

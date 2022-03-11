@@ -7,3 +7,13 @@ export const filterByProp = (arr) => {
   }
   return result;
 };
+
+export const filterBySubCategory = (arr) => {
+  let result = [];
+  for (let i = 0; i < arr.length; i++) {
+    if (!result.includes(arr[i].sub_category)) {
+      result.push(arr[i].sub_category);
+    }
+  }
+  return result;
+};

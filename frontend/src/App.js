@@ -8,7 +8,7 @@ import HomeScreen from "./screens/HomeScreen";
 import ProductScreen from "./screens/ProductScreen";
 import LoginScreen from "./screens/LoginScreen";
 import RegisterScreen from "./screens/RegisterScreen";
-
+import CategoryScreen from "./screens/CategoryScreen";
 // Import Router
 import { Routes, Route } from "react-router-dom";
 
@@ -29,9 +29,9 @@ function App() {
   return (
     <Fragment>
       {token && (
-        <div className="h-screen w-screen flex bg-gray-40">
+        <div className="w-screen flex bg-gray-40">
           <Navbar />
-          <main className="container mx-auto py-10">
+          <main className="container mx-auto">
             <Routes>
               <Route element={<ProtectedRoute />}>
                 <Route path="/" element={<HomeScreen />} />
@@ -41,7 +41,7 @@ function App() {
                 />
                 <Route
                   path="/products/category/:categoryId"
-                  element={<ProductScreen />}
+                  element={<CategoryScreen />}
                 />
               </Route>
             </Routes>

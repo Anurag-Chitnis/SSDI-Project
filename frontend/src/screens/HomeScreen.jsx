@@ -23,18 +23,20 @@ const HomeScreen = () => {
 
   const categories = filterByProp(products);
   const productsByCategory = sliceArrByProp(products, categories);
-
   return (
     <Fragment>
       <div className="wrapper">
         {!isLoading && productsByCategory && !error ? (
           <>
             {productsByCategory.map((productObject, index) => (
-              <DisplayProduct
-                key={index}
-                products={productObject.value}
-                category={productObject.key}
-              />
+              <div className="product__wrapper">
+                <DisplayProduct
+                  key={index}
+                  products={productObject.value}
+                  category={productObject.key}
+                  count="5"
+                />
+              </div>
             ))}
           </>
         ) : (
