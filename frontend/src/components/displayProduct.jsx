@@ -29,7 +29,11 @@ const DisplayProduct = ({ products, category, subCategory = null, count }) => {
       ) : (
         <>
           <Link
-            to={`/products/category/${category}`}
+            to={
+              !subCategory
+                ? `/products/category/${category}`
+                : `/products/category/${category}/${subCategory}`
+            }
             className="text-gray-800 hover:text-blue-400 hover:underline uppercase font-bold text-3xl cursor-pointer"
           >
             {!subCategory ? category : subCategory}

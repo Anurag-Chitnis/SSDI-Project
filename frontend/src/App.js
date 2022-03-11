@@ -9,6 +9,8 @@ import ProductScreen from "./screens/ProductScreen";
 import LoginScreen from "./screens/LoginScreen";
 import RegisterScreen from "./screens/RegisterScreen";
 import CategoryScreen from "./screens/CategoryScreen";
+import SubCategoryScreen from "./screens/SubCategoryScreen";
+
 // Import Router
 import { Routes, Route } from "react-router-dom";
 
@@ -42,6 +44,10 @@ function App() {
                 <Route
                   path="/products/category/:categoryId"
                   element={<CategoryScreen />}
+                />
+                <Route
+                  path="/products/category/:categoryId/:subCategoryId"
+                  element={<SubCategoryScreen />}
                 />
               </Route>
             </Routes>
