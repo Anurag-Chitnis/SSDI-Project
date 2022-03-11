@@ -38,6 +38,13 @@ export const ProductReducer = (state = INITIAL_STATE, { type, payload }) => {
         error: payload,
         product: null,
       };
+    case "CLEAR_STATE":
+      return {
+        products: [],
+        product: null,
+        isLoading: false,
+        error: false,
+      };
     default:
       return state;
   }

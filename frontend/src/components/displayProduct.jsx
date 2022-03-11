@@ -9,7 +9,7 @@ const DisplayProduct = ({ products, category }) => {
     <Fragment>
       <Link
         to={`/products/category/${category}`}
-        className="text-gray-800 mt-5 hover:text-blue-400 hover:underline uppercase pt-5 font-bold text-3xl cursor-pointer"
+        className="text-gray-800 hover:text-blue-400 hover:underline uppercase font-bold text-3xl cursor-pointer"
       >
         {category}
       </Link>

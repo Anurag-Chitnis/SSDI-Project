@@ -31,7 +31,7 @@ function App() {
       {token && (
         <div className="h-screen w-screen flex bg-gray-40">
           <Navbar />
-          <main className="container mx-auto py-5">
+          <main className="container mx-auto py-10">
             <Routes>
               <Route element={<ProtectedRoute />}>
                 <Route path="/" element={<HomeScreen />} />

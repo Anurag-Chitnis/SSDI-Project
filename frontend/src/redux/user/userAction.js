@@ -57,3 +57,12 @@ export const loginUser = (userData, navigate) => async (dispatch) => {
     });
   }
 };
+
+export const logOut = () => (dispatch) => {
+  dispatch({
+    type: "USER_LOGOUT",
+  });
+  dispatch({
+    type: "CLEAR_STATE",
+  });
+};

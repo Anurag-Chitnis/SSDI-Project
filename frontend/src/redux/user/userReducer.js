@@ -33,6 +33,13 @@ export const UserReducer = (state = INITIAL_STATE, { type, payload }) => {
         isLoading: false,
         error: payload,
       };
+    case "USER_LOGOUT":
+      return {
+        user: null,
+        isLoading: false,
+        error: null,
+        userData: null,
+      };
     default:
       return state;
   }

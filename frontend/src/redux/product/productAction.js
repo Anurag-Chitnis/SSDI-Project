@@ -54,3 +54,9 @@ export const getProductById = (id) => async (dispatch) => {
     });
   }
 };
+
+export const clearReducer = () => (dispatch) => {
+  dispatch({
+    type: "CLEAR_STATE",
+  });
+};
