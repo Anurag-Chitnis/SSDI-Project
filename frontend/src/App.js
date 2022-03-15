@@ -9,6 +9,7 @@ import ProductScreen from "./screens/ProductScreen";
 import LoginScreen from "./screens/LoginScreen";
 import RegisterScreen from "./screens/RegisterScreen";
 import CategoryScreen from "./screens/CategoryScreen";
+import CartScreen from "./screens/CartScreen";
 import SubCategoryScreen from "./screens/SubCategoryScreen";
 
 // Import Router
@@ -41,6 +42,8 @@ function App() {
                   path="/products/:productId"
                   element={<ProductScreen />}
                 />
+                <Route path="/cart" element={<CartScreen />} />
+                <Route path="/cart/:id" element={<CartScreen />} />
                 <Route
                   path="/products/category/:categoryId"
                   element={<CategoryScreen />}

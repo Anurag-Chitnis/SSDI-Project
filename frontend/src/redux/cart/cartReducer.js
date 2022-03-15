@@ -4,6 +4,11 @@ const INITIAL_STATE = {
   error: null,
 };
 
+// Add To cart logic
+// Check in cart if item is already present
+// if present then append qty by given qty
+// Otherwise add new item
+
 export const CartReducer = (state = INITIAL_STATE, { type, payload }) => {
   switch (type) {
     case "ADD_CART_ITEM_START":

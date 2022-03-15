@@ -1,11 +1,14 @@
-import React from "react";
-
+import React, { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+// Import Components
 import Rating from "./rating";
-
 import ListGroup from "./listGroup";
 import ListGroupItem from "./listGroupItem";
 
 const Product = ({ product }) => {
+  const [qty, setQty] = useState(1);
+  const navigate = useNavigate();
+  const { productId } = useParams();
   return (
     <div className="mx-auto flex flex-wrap pb-7">
       <img
@@ -34,7 +37,9 @@ const Product = ({ product }) => {
               <input
                 type="number"
                 max={product.countInStock}
+                value={qty}
                 className="font-semibold w-2/4 p-2 px-3 ml-2 text-lg text-center text-gray-700 bg-gray-200 outline-none focus:outline-none hover:text-black focus:text-black"
+                onChange={(e) => setQty(e.target.value)}
               />
             </div>
           )}
@@ -104,6 +109,7 @@ const Product = ({ product }) => {
                 product.countInStock > 0 ? "hover:bg-blue-600" : ""
               } rounded"`}
               disabled={product.countInStock > 0 ? false : true}
+              onClick={() => navigate(`/cart/${productId}?qty=${qty}`)}
             >
               Add To Cart
             </button>
