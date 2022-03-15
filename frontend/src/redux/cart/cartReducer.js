@@ -12,6 +12,7 @@ const INITIAL_STATE = {
 export const CartReducer = (state = INITIAL_STATE, { type, payload }) => {
   switch (type) {
     case "ADD_CART_ITEM_START":
+    case "REMOVE_CART_ITEM_START":
       return {
         ...state,
         isLoading: true,
@@ -31,6 +32,13 @@ export const CartReducer = (state = INITIAL_STATE, { type, payload }) => {
           ),
         };
       }
+    case "REMOVE_CART_ITEM_SUCCESS":
+      return {
+        ...state,
+        cartItems: state.cartItems.filter((itm) => itm._id !== payload._id),
+      };
+
+    case "REMOVE_CART_ITEM_FAIL":
     case "ADD_CART_ITEM_FAIL":
       return {
         ...state,

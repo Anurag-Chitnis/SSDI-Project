@@ -57,9 +57,7 @@ const CartScreen = () => {
         </div>
       </div>
       <div className="check-out-link mt-10 text-right">
-        <Link to="/dashboard/checkoutsteps/shipping">
-          Proceed To Checkout &#8594;
-        </Link>
+        <Link to="/checkoutsteps/shipping">Proceed To Checkout &#8594;</Link>
       </div>
     </div>
   );

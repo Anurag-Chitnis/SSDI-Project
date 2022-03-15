@@ -1,7 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+// Import Redux Action
+import { removeFromCart } from "../redux/cart/cartAction";
 
 const TableRow = ({ product }) => {
+  const dispatch = useDispatch();
+
   return (
     <>
       <tr>
@@ -44,6 +49,7 @@ const TableRow = ({ product }) => {
             className="h-5 mx-auto cursor-pointer text-center"
             src="/svg/delete.svg"
             alt="delete icon"
+            onClick={() => dispatch(removeFromCart(product._id))}
           />
         </td>
       </tr>
