@@ -25,11 +25,7 @@ const Navbar = () => {
           src="/svg/user.svg"
           alt="edit user profile"
         />
-        <NavLink
-          link="/dashboard/cart"
-          src="/svg/shopping-bag.svg"
-          alt="cart icon"
-        />
+        <NavLink link="/cart" src="/svg/shopping-bag.svg" alt="cart icon" />
         <NavLink
           link="/dashboard/add/issue"
           src="/svg/warning.svg"

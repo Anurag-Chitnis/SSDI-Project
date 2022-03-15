@@ -16,8 +16,10 @@ const CartScreen = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(addToCart(qty, id));
-  }, [dispatch]);
+    if (search) {
+      dispatch(addToCart(qty, id));
+    }
+  }, [dispatch, qty, id]);
 
   const { cartItems } = useSelector((state) => state.cart);
 
