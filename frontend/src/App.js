@@ -42,7 +42,6 @@ function App() {
                   path="/products/:productId"
                   element={<ProductScreen />}
                 />
-                <Route path="/cart" element={<CartScreen />} />
                 <Route path="/cart/:id" element={<CartScreen />} />
                 <Route
                   path="/products/category/:categoryId"

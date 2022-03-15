@@ -1,15 +1,20 @@
 import axios from "axios";
 
-// Get Product Id and Qty of product
-// Fetch that product
-// Dispatch Action with product
-// Otherwise throw error
-
-export const addToCart = (qty, id) => (dispatch) => {
+export const addToCart = (qty, id) => async (dispatch) => {
   dispatch({
     type: "ADD_CART_ITEM_START",
   });
 
   try {
-  } catch (err) {}
+    const { data } = await axios.get(`/api/products/${id}`);
+    dispatch({
+      type: "ADD_CART_ITEM_SUCCESS",
+      payload: { ...data, qty },
+    });
+  } catch (err) {
+    dispatch({
+      type: "ADD_CART_ITEM_FAIL",
+      payload: err.response.message,
+    });
+  }
 };

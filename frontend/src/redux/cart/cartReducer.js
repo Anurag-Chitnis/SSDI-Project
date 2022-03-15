@@ -17,14 +17,30 @@ export const CartReducer = (state = INITIAL_STATE, { type, payload }) => {
         isLoading: true,
       };
     case "ADD_CART_ITEM_SUCCESS":
-      return {
-        ...state,
-        cartItems: payload,
-      };
+      const exists = state.cartItems.find((itm) => itm._id === payload._id);
+      if (!exists) {
+        return {
+          ...state,
+          cartItems: [...state.cartItems, payload],
+        };
+      } else {
+        return {
+          ...state,
+          cartItems: state.cartItems.map((itm) =>
+            itm._id === payload._id ? payload : itm
+          ),
+        };
+      }
     case "ADD_CART_ITEM_FAIL":
       return {
         ...state,
         error: payload,
+      };
+    case "CLEAR_CART":
+      return {
+        cartItems: [],
+        isLoading: false,
+        error: null,
       };
     default:
       return state;

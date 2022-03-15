@@ -65,4 +65,7 @@ export const logOut = () => (dispatch) => {
   dispatch({
     type: "CLEAR_STATE",
   });
+  dispatch({
+    type: "CLEAR_CART",
+  });
 };
